@@ -1,0 +1,115 @@
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title></title>
+    <style type="text/css">
+    span.highlight {background-color:red;}
+    </style>
+    <script>
+    var height;
+    var width;
+    var spans = document.getElementsByTagName("span");
+    var i = 0;
+    var timePerChar = 100;
+    var play=true;
+     function getPositionOfElement(el) {
+        var elw =  el.offsetWidth;
+        var elh =  el.offsetHeight;
+        // yay readability
+        for (var lx=0, ly=0;
+             el != null;
+             lx += el.offsetLeft, ly += el.offsetTop, el = el.offsetParent);
+        return {x: lx,y: ly,w: elw, h: elh};
+    }
+
+    function highlightElements(passed) {
+      if(play==true){
+        i=passed;
+        alert(spans[i].innerHTML);
+        play=false;
+        var highlightSpeed = timePerChar; //* spans[i].innerHTML.length;
+        spans[i].setAttribute("class", "highlight");
+        var objInfo = new Object();
+        var nxtObjInfo = new Object();
+        objInfo = getPositionOfElement(spans[i]);
+        nxtObjInfo = getPositionOfElement(spans[i+1]);
+        var amt = (objInfo.x + objInfo.w + 50);
+        //alert(objInfo)	
+	console.log(amt);
+        console.log(width);
+        if(amt >= width && objInfo.x > nxtObjInfo.x){
+            console.log('SCROLL ' +objInfo.h+ ' ');
+	    //alert(objInfo);
+            window.scrollBy(0,objInfo.h);
+        }
+        setTimeout('unHighlight()', highlightSpeed);
+      }else{
+        highlightElements(i);
+        played=true;
+      }
+
+    }
+
+    function unHighlight (){
+        spans[i].removeAttribute("class");
+        i++;
+        if(i < spans.length) {
+            highlightElements(i);
+        }
+        if(i==spans.length){
+          unHighlight();
+        }
+    }
+
+    // This is just a namespace 
+    var CIRRO = function(){ 
+     return { 
+      /** 
+       * Initialize the page behaviors 
+       */ 
+      init : function() { 
+       CIRRO.wrapWordsWithSpan(); 
+      },   
+      /** 
+       * Replace the contents of each paragraph with span wrapped words 
+       */ 
+      wrapWordsWithSpan : function() { 
+       var paragraphs = document.getElementsByTagName("p");
+       //alert(paragraphs.length);
+       if(!paragraphs ) return; 
+       var j = 0;
+       while(j < paragraphs.length) {
+            // Parse the text into an array 
+           var arr = paragraphs[j].innerHTML.split(" "); 
+           // Generate span's for each item/word in the array 
+           for( var i = 0; i < arr.length; i++ ) { 
+            arr[i] = "<span>" + arr[i] + "</span>"; 
+            //alert(arr[i]);
+            }    
+           paragraphs[j].innerHTML = arr.join(" "); 
+           //alert(paragraphs[j].innerHTML); 
+           j++
+       }
+      } 
+     }; 
+    }(); 
+    window.onload = CIRRO.init; 
+    </script>
+    </head>
+    <body id="body">
+    
+    <input type="button" onclick="highlightElements(0);" value=“Highlight words” />
+<p>
+وقام وتنصيب هو غير. وجهان ألمانيا فعل إذ, ما قادة الصين بال. بال بـ وزارة منتصف اللازمة, بحق دأبوا وجهان كل. ثم فقد سقطت فرنسا والنرويج. ولم مع مساعدة الحكومة لتقليعة. أخر بـ ليركز الكونجرس, هذه سابق العالم، قد.
+
+أفاق التقليدي مما ثم, مما حكومة التكاليف مع. مكّن بمباركة المشتّتون يتم عن, أسر ليرتفع بلديهما مع. هُزم أمدها لعملة ثم الا, هو الشمل واعتلاء قبل, بـ تحت  
+</p>
+    <script>
+    var test = document.getElementById("body");
+    height = (test.clientHeight + 1);
+    width = (test.clientWidth + 1);
+    //alert(width +' '+ height);
+    </script>
+    </body>
+
+</html>

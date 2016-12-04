@@ -1,0 +1,202 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title></title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.2.3/jquery.min.js"></script>
+<style type="text/css">
+* {
+  box-sizing: border-box;
+}
+.mainbody{
+    margin-left: 2cm;
+    margin-top: 5cm;
+}
+.container {
+  width: 1080px;
+  margin: 0 auto;
+}
+
+.card {
+  float: left;
+  margin: 10px;
+  height: 200px;
+  width: 150px;
+  background: lightblue;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 10px 10px 10px #ccc;
+  }
+
+.card:hover {
+  cursor: pointer;
+  border: 3px solid blue;
+}
+
+.card p {
+  font-size: 48px;
+  color: blue;
+}
+
+    span.highlight {background-color:red;}
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* The actual popup */
+.popup .popuptext {
+    visibility: hidden;
+    width: 160px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+    from {opacity: 0;} 
+    to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+}
+#myAudio {
+    display: none;
+}
+span {
+    margin: 0px 10px;
+}
+.playing {
+    background: yellow;
+}
+    </style>
+    <script>
+var audioIndex = 0;
+var audioAddress = [
+  "http://audiomicro-dev.s3.amazonaws.com/preview/1030/caca5b5fcde48f9",
+  "http://audiomicro-dev.s3.amazonaws.com/preview/1030/9cd6976b1ce3b76",
+  "http://audiomicro-dev.s3.amazonaws.com/preview/1030/5d4ab0a4db5e7b4",
+  "http://audiomicro-dev.s3.amazonaws.com/preview/1030/0f5e54eda37e7f0",
+  "http://audiomicro-dev.s3.amazonaws.com/preview/1030/4597608ea80a312",
+  "http://audiomicro-dev.s3.amazonaws.com/preview/1030/6c4ae634173cc83"
+];
+
+var playing = false;
+
+$(function() {
+
+  $aud = $("#myAudio")[0];
+  $btn = $("button");
+
+  function setAudio(index) {
+    $("p > span").removeClass("playing");
+    $aud.src = audioAddress[index];
+  }
+
+  setAudio(audioIndex);
+
+  $btn.click(function() {
+    if (playing) {
+      playing = false;
+      $aud.pause();
+    } else
+      $aud.play();
+  });
+
+  $aud.onended = function() {
+    if (audioIndex < audioAddress.length - 1) {
+      audioIndex++;
+      setAudio(audioIndex);
+      $aud.play();
+    } else {
+      audioIndex = 0;
+      setAudio(audioIndex);
+      playing = false;
+      $btn.text("Play Audio");
+    }
+  };
+
+  $aud.onpause = function() {
+    if (!playing) $btn.text("Play Audio");
+  };
+
+  $aud.onplay = function() {
+    $btn.text("Pause Audio");
+    playing = true;
+    $("p > span:nth-child(" + (audioIndex + 1) + ")").addClass("playing");
+  };
+});
+    </script>
+    </head>
+<body>
+<audio id="myAudio">
+    <source src="" type="audio/mpeg">
+</audio>
+<div class="mainbody">
+<button>Play Audio</button>
+<p>
+    <span>Rooster</span>
+    <span>Cat</span>
+    <span>Horse</span>
+    <span>Elephant</span>
+    <span>Vulture</span>
+    <span>Duck</span>
+</p>
+<A HREF="https://digitalstory.herokuapp.com/polls/memorygame.html" TARGET="popup" ONCLICK="window.open('https://digitalstory.herokuapp.com/polls/memorygame.html', 'popup', 'resizable=no,fullscreen,width='+screen.availWidth+', height='+screen.availHeight); return false"> <img src="http://thinkrecycle.com.au/wp-content/uploads/2014/02/APP-Game-Click-Here.gif" width="175" height="75" border="2"></a>
+<script>
+// When the user clicks on div, open the popup
+function myFunction() {
+    var popup = document.getElementById('myPopup');
+    popup.classList.toggle('show');
+}
+function roosterpop() {
+    var popup = document.getElementById('rooster');
+    popup.classList.toggle('show');
+}
+function catpop() {
+    var popup = document.getElementById('cat');
+    popup.classList.toggle('show');
+}
+function horsepop() {
+    var popup = document.getElementById('horse');
+    popup.classList.toggle('show');
+}
+
+</script>
+</span>
+
+</body>
+</html>
