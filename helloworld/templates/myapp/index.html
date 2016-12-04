@@ -1,0 +1,99 @@
+<html>
+<head>
+<style>
+#myAudio {
+    display: none;
+}
+span {
+    margin: 0px 10px;
+}
+.playing {
+    background: yellow;
+}
+</style>
+
+</head>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.2.3/jquery.min.js"></script>
+<audio id="myAudio">
+    <source src="" type="audio/mpeg">
+</audio>
+<button>Play Audio</button>
+<p>
+    <span>Rooster</span>
+    <span>Cat</span>
+    <span>Horse</span>
+    <span style="color:blue;">Elephant</span>
+    <span>Vulture</span>
+    <span>Duck</span>
+</p>
+<div>
+    <span>Rooster</span>
+    <span>Cat</span>
+    <span>Horse</span>
+    <span style="color:blue;">Elephant</span>
+    <span>Vulture</span>
+    <span>Duck</span>
+</div>
+
+<A HREF="/game" onClick="return popup(this, 'notes')"><img width=250px height=100px src="http://thinkrecycle.com.au/wp-content/uploads/2014/02/APP-Game-Click-Here.gif"></A>
+</body>
+<script>
+var audioIndex = 0;
+var audioAddress = [
+  "http://audiomicro-dev.s3.amazonaws.com/preview/1030/caca5b5fcde48f9",
+  "http://audiomicro-dev.s3.amazonaws.com/preview/1030/9cd6976b1ce3b76",
+  "http://audiomicro-dev.s3.amazonaws.com/preview/1030/5d4ab0a4db5e7b4",
+  "http://audiomicro-dev.s3.amazonaws.com/preview/1030/0f5e54eda37e7f0",
+  "http://audiomicro-dev.s3.amazonaws.com/preview/1030/4597608ea80a312",
+  "http://audiomicro-dev.s3.amazonaws.com/preview/1030/6c4ae634173cc83"
+];
+
+var playing = false;
+
+$(function() {
+
+  $aud = $("#myAudio")[0];
+  $btn = $("button");
+
+  function setAudio(index) {
+    $("div > span").removeClass("playing");
+    $aud.src = audioAddress[index];
+  }
+
+  setAudio(audioIndex);
+
+  $btn.click(function() {
+    if (playing) {
+      playing = false;
+      $aud.pause();
+    } else
+      $aud.play();
+  });
+
+  $aud.onended = function() {
+    if (audioIndex < audioAddress.length - 1) {
+      audioIndex++;
+      setAudio(audioIndex);
+      $aud.play();
+    } else {
+      audioIndex = 0;
+      setAudio(audioIndex);
+      playing = false;
+      $btn.text("Play Audio");
+    }
+  };
+
+  $aud.onpause = function() {
+    if (!playing) $btn.text("Play Audio");
+  };
+
+  $aud.onplay = function() {
+    $btn.text("Pause Audio");
+    playing = true;
+    $("div > span:nth-child(" + (audioIndex + 1) + ")").addClass("playing");
+  };
+});
+</script>
+
+</html>
