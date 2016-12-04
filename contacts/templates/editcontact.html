@@ -1,0 +1,78 @@
+{% load staticfiles %}
+<html>
+    <head>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	<link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    </head>
+<script>
+function HideBorder(id)
+{
+   var myInput = document.getElementById(id).style;
+   myInput.borderStyle="none";
+}
+</script>
+<style>
+.box {
+    padding: 10px;
+    text-align: justify;
+    margin-top: 05px;
+    margin-left: 500px;
+    color: 'red';
+}
+.box:first-child {
+    margin-top: none;
+}
+body{
+background-image: url("http://www.designbolts.com/wp-content/uploads/2014/03/Bright-Blue1.jpg") 
+
+}
+</style>
+<h1  style="text-align: center;" class="form-actions">Project Details</h1>
+<div style="margin-left:500px; width:100%;">
+{% if contact.id %}
+<h1>Edit Contact</h1>
+<a href="{% url "contacts-delete" pk=contact.id %}"><button style="margin-top:10px;" class="btn btn-primary btn-large">Delete</button></a>
+{% else %}
+<h1>Add Contact</h1>
+{% endif %}
+  {% for contact in object_list %}
+    <li class="contact">
+      <a href="{{ contact.get_absolute_url }}">{{ contact }}</a>
+      (<a href="{% url "contacts-edit" pk=contact.id %}">edit</a>)
+    </li>
+  {% endfor %}
+<form style="text-align: left;" class="form-horizontal" action="{% url "contacts-new" %}" method="POST" {% if form.is_multipart %}enctype="multipart/form-data"{% endif %}>
+    <body>
+    {% csrf_token %}
+    {{ form.media }}
+    {% for field in form.visible_fields %}
+        <div class="control-group {{ field.html_name }} {% if field.errors %}error{% endif %}">
+            <label  class="form-group" onblur="HideBorder(this.id)" onfocus="ShowBorder(this.id)" >{{ field.label }}{% if field.field.required %} {% endif %}</label>
+            <div  class="form-group">
+                {{ field }}
+                {% if field.errors %}<span align="right" class="help-inline">{{ field.errors.as_text }}</span>{% endif %}
+
+            </div>
+        </div>
+    {% endfor %}
+    {% for field in form.hidden_fields %}
+        {{ field }}
+    {% endfor %}
+
+    {% block formsets %}
+        {% for formset in inlines %}
+            {% include "inline_formset.html" with formset=formset %}
+        {% endfor %}        
+    {% endblock formsets %}
+
+    <div class="form-horizontal">
+        <input style="margin-top:10px;" class="btn btn-primary btn-large" id="save_contact" type="submit" value="Submit project details"/>
+        {% block extra_buttons %}
+        {% endblock extra_buttons %}
+    </div>
+</form>
+</div>
+<h3 align="center" class="form-actions"><a align="center" href="{% url "contacts-list" %}">View all Submissions</a></h3>
+    </body>
+</html>

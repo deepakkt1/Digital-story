@@ -1,0 +1,23 @@
+{% load staticfiles %}
+<html>
+    <head>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	<link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    </head>
+    <body>
+{% block content %}
+<h1>Contacts</h1>
+
+<ul>
+  {% for contact in object_list %}
+    <li class="contact">{{ contact }}</li>
+      <a href="{% url "contacts-edit" pk=contact.id %}"><button style="margin-top:10px;" class="btn btn-primary btn-large">Edit contact</button></a>
+    </li>
+  {% endfor %}
+</ul>
+
+<a href="{% url "contacts-new" %}"><button style="margin-top:10px;" class="btn btn-primary btn-large">add contact</button></a>
+{% endblock %}
+</body>
+</html>
