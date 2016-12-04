@@ -1,6 +1,9 @@
 <html>
 <head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <style>
+
 #myAudio {
     display: none;
 }
@@ -10,35 +13,47 @@ span {
 .playing {
     background: yellow;
 }
+.popup 
+{cursor: pointer}
+.head{
+   font-family: "Courier New", monospace;
+}
 </style>
-
 </head>
 <body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.2.3/jquery.min.js"></script>
 <audio id="myAudio">
     <source src="" type="audio/mpeg">
 </audio>
-<button>Play Audio</button>
+<div align=center>
+<h1 class="head"> Digital story project</h1>
+</div>
+<div class="jumbotron" align=center width=90 >
+
 <p>
-    <span>Rooster</span>
+    <span class="popup" onclick="roosterpop();" >Rooster</span>	
     <span>Cat</span>
     <span>Horse</span>
-    <span style="color:blue;">Elephant</span>
+    <span >Elephant</span>
     <span>Vulture</span>
     <span>Duck</span>
 </p>
-<div>
-    <span>Rooster</span>
-    <span>Cat</span>
-    <span>Horse</span>
-    <span style="color:blue;">Elephant</span>
-    <span>Vulture</span>
-    <span>Duck</span>
 </div>
-
+<div align=center >
+<button class="btn btn-primary">Play Audio</button>
+</br>
+</br>
 <A HREF="/game" onClick="return popup(this, 'notes')"><img width=250px height=100px src="http://thinkrecycle.com.au/wp-content/uploads/2014/02/APP-Game-Click-Here.gif"></A>
+</div >
+
 </body>
 <script>
+function roosterpop(){
+var popup = open("", "Popup", "width=300,height=200");
+var aOk = popup.document.createElement("h3");
+aOk.innerHTML = "The term rooster originates in the United States, and the term is widely used throughout North America, as well as Australia and New Zealand";
+popup.document.body.appendChild(aOk);
+}
 var audioIndex = 0;
 var audioAddress = [
   "http://audiomicro-dev.s3.amazonaws.com/preview/1030/caca5b5fcde48f9",
@@ -57,7 +72,7 @@ $(function() {
   $btn = $("button");
 
   function setAudio(index) {
-    $("div > span").removeClass("playing");
+    $("p > span").removeClass("playing");
     $aud.src = audioAddress[index];
   }
 
@@ -91,7 +106,7 @@ $(function() {
   $aud.onplay = function() {
     $btn.text("Pause Audio");
     playing = true;
-    $("div > span:nth-child(" + (audioIndex + 1) + ")").addClass("playing");
+    $("p > span:nth-child(" + (audioIndex + 1) + ")").addClass("playing");
   };
 });
 </script>
