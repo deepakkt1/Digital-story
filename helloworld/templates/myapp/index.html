@@ -3,17 +3,88 @@
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <style>
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: #666666;
+    color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #d3d3d3;
+    color: white;
+}
+</style>
+<style>
 #btn{
 position: relative;
 bottom: 0px;
 left: -40%;
-top:150px;
+top:20%;
 }
 .refer{
 position: relative;
 bottom: 0px;
 right: -40%;
-top:150px;
+top:80%;
 }
 
 #myAudio {
@@ -44,6 +115,25 @@ height:80%;
 </style>
 </head>
 <body>
+<div id="myModal" class="modal">
+
+			  <!-- Modal content -->
+			  <div class="modal-content">
+			    <div class="modal-header">
+			      <h1 class="close">&times;</h1>
+			      <h2 align="center">Arabic Langauge Learning</h2>
+			    </div>
+			    <div class="modal-body">
+			      <p>The term rooster originates in the United States, and the term is widely used throughout North America, as well as Australia and New Zealand</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ityVW2gR0Rs" frameborder="0" allowfullscreen></iframe>
+			    </div>
+			    <div class="modal-footer">
+			      <h3 align="center">Dept. of ALTEC</h3>
+			    </div>
+			  </div>
+
+			</div>
+
 <div class="divs">
        <div id="di" class="jumbotron" align=center><h2>Chapter 1</h2>
 	<audio id="myAudio">
@@ -51,7 +141,7 @@ height:80%;
 	</audio>
 	</br>
 		<h3 class="head"> Animal sounds</h3></br>
-		<p>
+		<p>   
 		    <span class="popup" onclick="roosterpop();" >Rooster</span>	
 		    <span>Cat</span>
 		    <span>Horse</span>
@@ -75,10 +165,12 @@ height:80%;
 		    <span >Elephant</span>
 		    <span>Vulture</span>
 		    <span>Duck</span>
-		</p></br></br>
+		</p></br>
 		<button align=center id="btn" class="btn btn-primary">Play Audio</button>
 		<a class="refer" HREF="/game" onClick="return popup(this, 'notes')"><img width=150px height=50px src="http://thinkrecycle.com.au/wp-content/uploads/2014/02/APP-Game-Click-Here.gif"></a>
 	</div>
+
+
 </div>
 
 <div align=center>
@@ -129,15 +221,34 @@ var audioAddress = [
 
 var playing = false;
 function roosterpop(){
-var popup = open("", "Popup", "width=300,height=200");
-var aOk = popup.document.createElement("h3");
-aOk.innerHTML = "The term rooster originates in the United States, and the term is widely used throughout North America, as well as Australia and New Zealand";
-popup.document.body.appendChild(aOk);
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+    modal.style.display = "block";
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
 }
 $(function() {
 
   $aud = $("#myAudio")[0];
-  $btn = $("button");
+  $btn = $("#btn");
 
   function setAudio(index) {
     $("p > span").removeClass("playing");
