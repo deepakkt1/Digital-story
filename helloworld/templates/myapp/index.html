@@ -87,7 +87,7 @@ top:20%;
 .refer{
 position: relative;
 bottom: 0px;
-right: -40%;
+right: 0%;
 top:80%;
 }
 
@@ -164,21 +164,18 @@ p.line {
 	<br>
 	<br>
 	
-		<audio id="audiofile" src="url(static/audio/speech.mp3)" controls ></audio><br>
+		<audio id="audiofile" preload="auto" controls ><source src="https://dl.dropbox.com/s/gpw39ow8dz1z4hq/speech.mp3" controls ></audio><br>
 <br>
 	<br>
 	<br>
 	<br>
 				
-		<a class="refer" HREF="/game" onClick="return popup(this, 'notes')"><img width=150px height=50px src="http://thinkrecycle.com.au/wp-content/uploads/2014/02/APP-Game-Click-Here.gif"></a>
+		<a  class="refer" HREF="/game" onClick="return popup(this, 'notes')"><img width=150px height=50px src="http://thinkrecycle.com.au/wp-content/uploads/2014/02/APP-Game-Click-Here.gif"></a>
 	</div>
 	 <div id="di" class="jumbotron" align=center><h2>Chapter 2</h2>
 
 		<div  align=center>
-			<audio id="audiofile" src="speech.mp3" controls ></audio><br>
-			<div id="subtitles">
-	
-			</div>
+			
 		</div>      
 	</div>
 </div>
@@ -279,9 +276,11 @@ $(document).ready(function(){
 	      }
               subtitles.appendChild(element);
           }
+
       }
 
-      audioPlayer.addEventListener("timeupdate", function(e){
+	//audio.addEventListener('canplaythrough', isAppLoaded, false);
+        audioPlayer.addEventListener("timeupdate", function(e){
           syncData.forEach(function(element, index, array){
               if( audioPlayer.currentTime >= element.start && audioPlayer.currentTime <= element.end )
                   subtitles.children[index].style.background = 'yellow';
