@@ -1,9 +1,5 @@
-
 <html>
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.2.3/jquery.min.js"></script>
-
-<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <style>
@@ -117,16 +113,6 @@ height:80%;
 }
 
 </style>
-<style>
-p.line {
-    line-height: 1.5em;
-    font-weight: 300;
-}
-
-    body{background:#4BB5C1;font-family:'Lato',sans-serif;font-size:1.5em;line-height:1.1em;letter-spacing:.05em;margin:0}header{background:#46ABB6;padding:20px 0}h1.heading{line-height:1.1em;text-align:center;font-weight:400;font-size:1.7em;color:#EDF7F2}div.naturallanguageform{width:900px;margin:2% auto;max-width:95%;min-height:400px;border-radius:5px;color:#FFF;font-size:1.5em}div.nlfinner{width:96%;padding:2%}p.line{line-height:1.5em;font-weight:300}input.textinput{background:none;border:0;border-bottom:1px dashed #EEE;width:auto;font-size:1em;color:#B5E655;font:inherit}input.textinput:focus{outline:none;border-bottom:1px dashed #D00}::-webkit-input-placeholder{color:#B5E655;font-weight:300}:-moz-placeholder{color:#B5E655;opacity:1}::-moz-placeholder{color:#B5E655;opacity:1}:-ms-input-placeholder{color:#B5E655}select.dropdown{font-size:1em;color:#B5E655;border:none;border-bottom:1px dashed #EFEFEF;-webkit-appearance:none;-moz-appearance:none;background:none;width:auto;text-indent:.01px;box-shadow:none;font:inherit}select.dropdown:focus{outline:none;border-bottom:1px dashed #D00}button.button{background:#388891;border:none;padding:10px 50px;font-size:1em;color:#FFF;display:block;margin:40px auto 0;cursor:pointer;font:inherit}
-  
-</style>
-
 </head>
 <body>
 <div id="myModal" class="modal">
@@ -138,9 +124,7 @@ p.line {
 			      <h2 align="center">Arabic Langauge Learning</h2>
 			    </div>
 			    <div class="modal-body">
-			      <p>History (from Greek , meaning "inquiry, knowledge acquired by investigation") is the study of the past as it is described in written documents. Events occurring before written record are considered prehistory. It is an umbrella term that relates to past events as well as the memory, discovery, collection, organization, presentation, and interpretation of information about these events. Scholars who write about history are called historians.
-
-</p>
+			      <p>The term rooster originates in the United States, and the term is widely used throughout North America, as well as Australia and New Zealand</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ityVW2gR0Rs" frameborder="0" allowfullscreen></iframe>
 			    </div>
 			    <div class="modal-footer">
@@ -151,42 +135,80 @@ p.line {
 			</div>
 
 <div class="divs">
-       <div id="di" class="jumbotron" align=center>
-	<h2>Chapter 1</h2>
-	<h3>Welcome</h3>
-	<br>
-	<br>
-			<h5 id="subtitles">
-	
-			</h5>
-<br>
-	<br>
-	<br>
-	<br>
-	
-		<audio id="audiofile" src="speech.mp3" controls ></audio><br>
-<br>
-	<br>
-	<br>
-	<br>
-				
+       <div id="di" class="jumbotron" align=center><h2>Chapter 1</h2>
+		<audio id="audiofile" controls>
+			    <source src="speech.mp3" type="audio/mpeg" controls>
+		</audio>
+	 	<div id="subtitles">
+
+		</div>
+
+		</br>
+			<h3 class="head"> Animal sounds</h3></br>
+			<p>   
+			    <span class="popup" onclick="roosterpop();" >Rooster</span>	
+			    <span>Cat</span>
+			    <span>Horse</span>
+			    <span >Elephant</span>
+			    <span>Vulture</span>
+			    <span>Duck</span>
+			</p></br></br>
+			<button align=center id="btn" class="btn btn-primary">Play Audio</button>
+			<a class="refer" HREF="/game" onClick="return popup(this, 'notes')"><img width=150px height=50px src="http://thinkrecycle.com.au/wp-content/uploads/2014/02/APP-Game-Click-Here.gif"></a>
+	</div>
+	<div id="di" class="jumbotron" align=center><h2>Chapter 2</h2>
+       
+		<h3 class="head"> Second chapter</h3></br>
+		<p>
+		    <span class="popup" onclick="roosterpop();" >Rooster</span>	
+		    <span>Cat</span>
+		    <span>Horse</span>
+		    <span >Elephant</span>
+		    <span>Vulture</span>
+		    <span>Duck</span>
+		</p></br>
+		<button align=center id="btn" class="btn btn-primary">Play Audio</button>
 		<a class="refer" HREF="/game" onClick="return popup(this, 'notes')"><img width=150px height=50px src="http://thinkrecycle.com.au/wp-content/uploads/2014/02/APP-Game-Click-Here.gif"></a>
 	</div>
-	 <div id="di" class="jumbotron" align=center><h2>Chapter 2</h2>
 
-		<div  align=center>
-			<audio id="audiofile" src="speech.mp3" controls ></audio><br>
-			<div id="subtitles">
-	
-			</div>
-		</div>      
-	</div>
+
 </div>
+
 <div align=center>
 <a id="prev"class="btn btn-primary">Previous</a>
 <a id="next" class="btn btn-primary">Next</a>
 </div>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.2.3/jquery.min.js"></script>
+<script>
+
+$(document).ready(function(){
+    $(".divs div").each(function(e) {
+        if (e != 0)
+            $(this).hide();
+    });
+    
+    $("#next").click(function(){
+        if ($(".divs div:visible").next().length != 0)
+            $(".divs div:visible").next().show().prev().hide();
+        else {
+            $(".divs div:visible").hide();
+            $(".divs div:first").show();
+        }
+        return false;
+    });
+
+    $("#prev").click(function(){
+        if ($(".divs div:visible").prev().length != 0)
+            $(".divs div:visible").prev().show().next().hide();
+        else {
+            $(".divs div:visible").hide();
+            $(".divs div:last").show();
+        }
+        return false;
+    });
+});
+</script>
 <script>
 function roosterpop(){
 // Get the modal
@@ -213,52 +235,35 @@ window.onclick = function(event) {
 }
 
 }
+$(function() {
+playing=false;
+  $aud = $("#myAudio")[0];
+  $btn = $("#btn");
 
-$(document).ready(function(){
-    $(".divs div").each(function(e) {
-        if (e != 0)
-            $(this).hide();
-	else
-	   $(this).show();
-    });
-    
-    $("#next").click(function(){
-        if ($(".divs div:visible").next().length != 0)
-            $(".divs div:visible").next().show().prev().hide();
-        else {
-            $(".divs div:visible").hide();
-            $(".divs div:first").show();
-        }
-        return false;
-    });
-
-    $("#prev").click(function(){
-        if ($(".divs div:visible").prev().length != 0)
-            $(".divs div:visible").prev().show().next().hide();
-        else {
-            $(".divs div:visible").hide();
-            $(".divs div:last").show();
-        }
-        return false;
-    });
-});
-</script>
-
-        <script>
-  ( function(win, doc) {
+  $btn.click(function() {
+if(playing){
+playing=false;
+	  $btn.text("Play audio");
+document.getElementById("audiofile").pause();
+}
+else{
+	playing=true;
+	$btn.text("Pause audio");
+//document.getElementById("audiofile").play();
+( function(win, doc) {
       var audioPlayer = doc.getElementById("audiofile");
       var subtitles = doc.getElementById("subtitles");
       var syncData = [
             { "end": "0.550","start": "0.080","text": "I am" },
             {"end": "0.930","start": "0.550","text": "happy" },
             {"end": "1.490","start": "1.085","text": "to join" },
-            {"end": "1.790","start": "1.390","text": "with you" },
+            {"end": "1.790","start": "1.390","text": "with you " },
             {"end": "2.250","start": "1.790","text": "today" },
             {"end": "2.690","start": "2.250","text": "in what will" },
-            {"end": "3.300","start": "2.690","text": "go down in" },
+            {"end": "3.300","start": "2.690","text": "go down in " },
             {"end": "3.800","start": "3.300","text": "history" },
-            {"end": "4.200","start": "3.800","text": "as the" },
-            {"end": "5.600","start": "4.200","text": "greatest demonstration" },
+            {"end": "4.200","start": "3.800","text": "as the " },
+            {"end": "5.600","start": "4.200","text": "greatest demonstration " },
             {"end": "6.400","start": "5.600","text": "for freedom in" },
             { "end": "7.250","start": "6.400","text": "the history of" },
             { "end": "7.900","start": "7.250","text": "our nation." }
@@ -271,12 +276,7 @@ $(document).ready(function(){
           for (var i = 0; i < syncData.length; i++) {
               element = doc.createElement('span');
               element.setAttribute("id", "c_" + i);
-              element.innerText = syncData[i].text + "";
-	      if(syncData[i].text=="history"){
-		element.setAttribute("onclick", "roosterpop();");
-		element.style.color="grey";
-		element.style.cursor="pointer";
-	      }
+              element.innerText = syncData[i].text + " ";
               subtitles.appendChild(element);
           }
       }
@@ -286,11 +286,20 @@ $(document).ready(function(){
               if( audioPlayer.currentTime >= element.start && audioPlayer.currentTime <= element.end )
                   subtitles.children[index].style.background = 'yellow';
 		else{
-subtitles.children[index].style.background = 'none';
+subtitles.children[index].style.background = '#4BB5C1';
 }
           });
       });
   }(window, document));
-    </script>
+  
+
+}
+});
+
+});
+  </script>
+<script> 
+   
+</script>
 </body>
 </html>
