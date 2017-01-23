@@ -116,6 +116,22 @@ position:relative:
 width:99%;
 height:80%;
 }
+div.pager a {
+  color: black;
+    float: center;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+    font-size: 18px;
+
+
+}
+div.pager a.active {
+    background-color: #eee;
+    color: black;
+    border: 1px solid #ddd;
+}
 
 </style>
 <style>
@@ -191,9 +207,9 @@ p.line {
 	<br>      
 	</div>
 </div>
-<div align=center>
-<a id="prev"class="btn btn-primary">Previous</a>
-<a id="next" class="btn btn-primary">Next</a>
+<div align="center" class="pager">
+<a id="prev" style="cursor:pointer">❮</a>
+<a id="next" style="cursor:pointer">❯</a>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.2.3/jquery.min.js"></script>
 <script>
