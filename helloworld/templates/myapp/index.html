@@ -2,12 +2,12 @@
 <html>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.2.3/jquery.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <style>
-
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
@@ -17,7 +17,7 @@
     left: 0;
     top: 0;
     width: 100%; /* Full width */
-    height:100%; /* Full height */
+    height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
@@ -30,7 +30,7 @@
     margin: auto;
     padding: 0;
     border: 1px solid #888;
-    width: 50%;
+    width: 80%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
@@ -70,7 +70,7 @@
     color: white;
 }
 
-.modal-body {padding: 8px 16px;}
+.modal-body {padding: 2px 16px;}
 
 .modal-footer {
     padding: 2px 16px;
@@ -140,12 +140,10 @@ p.line {
 			    </div>
 			    <div class="modal-body">
 			      <p>History (from Greek , meaning "inquiry, knowledge acquired by investigation") is the study of the past as it is described in written documents. Events occurring before written record are considered prehistory. It is an umbrella term that relates to past events as well as the memory, discovery, collection, organization, presentation, and interpretation of information about these events. Scholars who write about history are called historians.
-</br>
+
 </p>
-  <div align="center">
-    <iframe align="center" width="560" height="315" src="https://www.youtube.com/embed/ityVW2gR0Rs" frameborder="0" allowfullscreen></iframe>
-  </div>
-  			    </div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ityVW2gR0Rs" frameborder="0" allowfullscreen></iframe>
+			    </div>
 			    <div class="modal-footer">
 			      <h3 align="center">Dept. of ALTEC</h3>
 			    </div>
@@ -155,32 +153,41 @@ p.line {
 
 <div class="divs">
        <div id="di" class="jumbotron" align=center>
-	<h2>Chapter 1</h2>
-	<h3>Welcome</h3>
-	<br>
-	<br>
-    	<h5 width="50%" id="subtitles">
+		<h2>Chapter 1</h2>
+		<h3>Welcome</h3>
+		<br>
+		<br>
+				<h5 id="subtitles">
 	
-			</h5>
-     
-<br>
+				</h5>
 	<br>
-	<br>
-	<br>
+		<br>
+		<br>
+		<br>
 	
-		<audio id="audiofile" preload="auto" controls ><source src="https://dl.dropbox.com/s/gpw39ow8dz1z4hq/speech.mp3" controls ></audio><br>
-<br>
+			<audio id="audiofile" preload="auto" controls ><source src="https://dl.dropbox.com/s/gpw39ow8dz1z4hq/speech.mp3" controls ></audio><br>
 	<br>
-	<br>
-	<br>
+		<br>
+		<br>
+		<br>
 				
-		<a  class="refer" HREF="/game" onClick="return popup(this, 'notes')"><img width=150px height=50px src="http://thinkrecycle.com.au/wp-content/uploads/2014/02/APP-Game-Click-Here.gif"></a>
+			<a  class="refer" HREF="/game" onClick="return popup(this, 'notes')"><img width=150px height=50px src="http://thinkrecycle.com.au/wp-content/uploads/2014/02/APP-Game-Click-Here.gif"></a>
 	</div>
 	 <div id="di" class="jumbotron" align=center><h2>Chapter 2</h2>
 
-		<div  align=center>
-			
-		</div>      
+		<h3>Arabic version</h3>
+		<br>
+		<br>
+				<h5 id="subtitles1">
+	
+				</h5>
+		<br>
+		<br>
+		<br>
+		<br>
+	
+			<audio id="audiofile1" preload="auto" controls ><source src="https://dl.dropbox.com/s/kfv8oszno6cyygx/arabic1.mp3" controls ></audio><br>
+	<br>      
 	</div>
 </div>
 <div align=center>
@@ -189,7 +196,6 @@ p.line {
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.2.3/jquery.min.js"></script>
 <script>
-
 function roosterpop(){
 // Get the modal
 var modal = document.getElementById('myModal');
@@ -266,19 +272,13 @@ $(document).ready(function(){
             { "end": "7.900","start": "7.250","text": "our nation." }
           ];
       createSubtitle();
-var element;
-element=doc.getElementById('subtitles');
-           element.style.height="100px";
-              element.style.width="200px";
-          
+
       function createSubtitle()
       {
-
-             
+          var element;
           for (var i = 0; i < syncData.length; i++) {
               element = doc.createElement('span');
               element.setAttribute("id", "c_" + i);
-              element.style.align="center";
               element.innerText = syncData[i].text + "";
 	      if(syncData[i].text=="history"){
 		element.setAttribute("onclick", "roosterpop();");
@@ -300,6 +300,42 @@ subtitles.children[index].style.background = 'none';
 }
           });
       });
+  var audioPlayer1 = doc.getElementById("audiofile1");
+      var subtitles1 = doc.getElementById("subtitles1");
+      var syncData1 = [
+            { "end": "1.005","start": "0.000","text": "مَرحباً،" },
+            {"end": "1.885","start": "1.005","text": "أنا" },
+            {"end": "2.760","start": "1.885","text": "أحد الأصوات" },
+            {"end": "3.430","start": "2.760","text": "التي" },
+            {"end": "5.520","start": "3.430","text": "يمكنكم إستخدامها" },
+            {"end": "8.404","start": "5.520","text": "لقراءة محتوى موقعكم الإلكتروني." },
+           ];
+      createSubtitle1();
+
+      function createSubtitle1()
+      {
+          var element1;
+          for (var i = 0; i < syncData1.length; i++) {
+              element1 = doc.createElement('span');
+              element1.setAttribute("id", "c_" + i);
+              element1.innerText = syncData1[i].text + "";
+	      subtitles1.appendChild(element1);
+          }
+
+      }
+
+	//audio.addEventListener('canplaythrough', isAppLoaded, false);
+        audioPlayer1.addEventListener("timeupdate", function(e){
+          syncData1.forEach(function(element1, index, array){
+		
+              if( audioPlayer1.currentTime >= element1.start && audioPlayer1.currentTime <= element1.end )
+                  subtitles1.children[index].style.background = 'yellow';
+		else{
+subtitles1.children[index].style.background = 'none';
+}
+          });
+      });
+
   }(window, document));
     </script>
 </body>
