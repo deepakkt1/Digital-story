@@ -91,7 +91,11 @@ bottom: 0px;
 right: 0%;
 top:80%;
 }
-
+#subtitles{
+overflow: auto;
+width: 250px;
+height: 100px;
+}
 #myAudio {
     display: none;
 }
@@ -176,7 +180,8 @@ p.line {
 		<br>
 		<br>
 				<h5 id="subtitles">
-	
+				"Hey: this should come as surprise as this should not be visible at all.!!!!"
+				
 				</h5>
 	<br>
 		<br>
@@ -326,8 +331,16 @@ $(document).ready(function(){
 	//audio.addEventListener('canplaythrough', isAppLoaded, false);
         audioPlayer.addEventListener("timeupdate", function(e){
           syncData.forEach(function(element, index, array){
-              if( audioPlayer.currentTime >= element.start && audioPlayer.currentTime <= element.end )
+		  var div = document.getElementById("c_"+0);
+		  var rect = div.getBoundingClientRect();
+		  var topval=rect.top;
+              if( audioPlayer.currentTime >= element.start && audioPlayer.currentTime <= element.end ){
                   subtitles.children[index].style.background = 'yellow';
+				  var div = document.getElementById("c_"+index);
+var rect = div.getBoundingClientRect();
+	if(rect.top - topval > 30)
+document.getElementById('subtitles').scrollTop = rect.top;
+				  }
 		else{
 subtitles.children[index].style.background = 'none';
 }
@@ -367,13 +380,21 @@ subtitles.children[index].style.background = 'none';
           }
 		}
       }
-
+function getOffset(el) {
+  el = el.getBoundingClientRect();
+  return {
+    left: el.left + window.scrollX,
+    top: el.top + window.scrollY
+  }
+}
 	//audio.addEventListener('canplaythrough', isAppLoaded, false);
         audioPlayer1.addEventListener("timeupdate", function(e){
           syncData1.forEach(function(element1, index, array){
 		
-              if( audioPlayer1.currentTime >= element1.start && audioPlayer1.currentTime <= element1.end )
+              if( audioPlayer1.currentTime >= element1.start && audioPlayer1.currentTime <= element1.end ){
                   subtitles1.children[index].style.background = 'yellow';
+				   
+				  }
 		else{
 subtitles1.children[index].style.background = 'none';
 }
