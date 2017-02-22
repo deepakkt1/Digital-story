@@ -205,7 +205,8 @@ p.line {
 		<br>
 	
 			<audio id="audiofile1" preload="auto" controls ><source src="https://dl.dropbox.com/s/kfv8oszno6cyygx/arabic1.mp3" controls ></audio><br>
-	<br>      
+	<br>     
+<button type="button" class="btn btn-info" onclick="callme()" >Toggle vowel</button>	
 	</div>
 </div>
 <div align="center" class="pager">
@@ -214,6 +215,20 @@ p.line {
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.2.3/jquery.min.js"></script>
 <script>
+var toggled=false;
+function callme(){
+var allVowels=document.getElementsByClassName("vowelfound").length;
+if(!toggled){
+for(var i=0;i<allVowels;i++)
+document.getElementsByClassName("vowelfound")[i].style.color="green";
+toggled=true;
+}
+else{
+for(var i=0;i<allVowels;i++)
+document.getElementsByClassName("vowelfound")[i].style.color="red";
+toggled=false;
+}
+}
 function roosterpop(){
 // Get the modal
 var modal = document.getElementById('myModal');
@@ -322,24 +337,35 @@ subtitles.children[index].style.background = 'none';
       var subtitles1 = doc.getElementById("subtitles1");
       var syncData1 = [
             { "end": "1.005","start": "0.000","text": "مَرحباً،" },
-            {"end": "1.885","start": "1.005","text": "أنا" },
+            {"end": "1.885","start": "1.005","text": "فَتْ" },
             {"end": "2.760","start": "1.885","text": "أحد الأصوات" },
-            {"end": "3.430","start": "2.760","text": "التي" },
+            {"end": "3.430","start": "2.760","text": "فَتْحَة" },
             {"end": "5.520","start": "3.430","text": "يمكنكم إستخدامها" },
             {"end": "8.404","start": "5.520","text": "لقراءة محتوى موقعكم الإلكتروني." },
            ];
       createSubtitle1();
-
-      function createSubtitle1()
+  function createSubtitle1()
       {
           var element1;
+		  var element2;
+		  var element3;
           for (var i = 0; i < syncData1.length; i++) {
+		  if(syncData1[i].text.includes("ْ"))
+		  {
+		  var ind = syncData1[i].text.indexOf("ْ");
+		var subs= syncData1[i].text.substring(ind,ind+1);
+		  element1 = doc.createElement('span');
+          element1.setAttribute("id", "c_" + i);
+		  element1.innerHTML=syncData1[i].text.substring(0,ind)+'<p class="vowelfound" style="display:inline;color:red">'+subs+'</p>'+syncData1[i].text.substring(ind+1,syncData1[i].text.length);
+		  subtitles1.appendChild(element1);
+		  
+		  }else{
               element1 = doc.createElement('span');
               element1.setAttribute("id", "c_" + i);
               element1.innerText = syncData1[i].text + "";
 	      subtitles1.appendChild(element1);
           }
-
+		}
       }
 
 	//audio.addEventListener('canplaythrough', isAppLoaded, false);
