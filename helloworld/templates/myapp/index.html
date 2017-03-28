@@ -93,8 +93,8 @@ top:80%;
 }
 #subtitles{
 overflow: auto;
-width: 250px;
-height: 100px;
+width: 490px;
+height: 80px;
 }
 #myAudio {
     display: none;
@@ -117,7 +117,7 @@ position:relative:
 #di
 {
    position: relative;
-width:99%;
+width:100%;
 height:80%;
 }
 div.pager a {
@@ -144,7 +144,7 @@ p.line {
     font-weight: 300;
 }
 
-    body{background:#4BB5C1;font-family:'Lato',sans-serif;font-size:1.5em;line-height:1.1em;letter-spacing:.05em;margin:0}header{background:#46ABB6;padding:20px 0}h1.heading{line-height:1.1em;text-align:center;font-weight:400;font-size:1.7em;color:#EDF7F2}div.naturallanguageform{width:900px;margin:2% auto;max-width:95%;min-height:400px;border-radius:5px;color:#FFF;font-size:1.5em}div.nlfinner{width:96%;padding:2%}p.line{line-height:1.5em;font-weight:300}input.textinput{background:none;border:0;border-bottom:1px dashed #EEE;width:auto;font-size:1em;color:#B5E655;font:inherit}input.textinput:focus{outline:none;border-bottom:1px dashed #D00}::-webkit-input-placeholder{color:#B5E655;font-weight:300}:-moz-placeholder{color:#B5E655;opacity:1}::-moz-placeholder{color:#B5E655;opacity:1}:-ms-input-placeholder{color:#B5E655}select.dropdown{font-size:1em;color:#B5E655;border:none;border-bottom:1px dashed #EFEFEF;-webkit-appearance:none;-moz-appearance:none;background:none;width:auto;text-indent:.01px;box-shadow:none;font:inherit}select.dropdown:focus{outline:none;border-bottom:1px dashed #D00}button.button{background:#388891;border:none;padding:10px 50px;font-size:1em;color:#FFF;display:block;margin:40px auto 0;cursor:pointer;font:inherit}
+    body{background:#4BB5C1;font-family:"Trebuchet MS", Helvetica, sans-serif;font-size:3em;line-height:1.1em;letter-spacing:.05em;margin:0}header{background:#46ABB6;padding:20px 0}h1.heading{line-height:1.1em;text-align:center;font-weight:400;font-size:1.7em;color:#EDF7F2}div.naturallanguageform{width:900px;margin:2% auto;max-width:95%;min-height:400px;border-radius:5px;color:#FFF;font-size:1.5em}div.nlfinner{width:96%;padding:2%}p.line{line-height:1.5em;font-weight:300}input.textinput{background:none;border:0;border-bottom:1px dashed #EEE;width:auto;font-size:1em;color:#B5E655;font:inherit}input.textinput:focus{outline:none;border-bottom:1px dashed #D00}::-webkit-input-placeholder{color:#B5E655;font-weight:300}:-moz-placeholder{color:#B5E655;opacity:1}::-moz-placeholder{color:#B5E655;opacity:1}:-ms-input-placeholder{color:#B5E655}select.dropdown{font-size:1em;color:#B5E655;border:none;border-bottom:1px dashed #EFEFEF;-webkit-appearance:none;-moz-appearance:none;background:none;width:auto;text-indent:.01px;box-shadow:none;font:inherit}select.dropdown:focus{outline:none;border-bottom:1px dashed #D00}button.button{background:#388891;border:none;padding:10px 50px;font-size:1em;color:#FFF;display:block;margin:40px auto 0;cursor:pointer;font:inherit}
   
 </style>
 
@@ -174,27 +174,19 @@ p.line {
 			</div>
 
 <div class="divs">
-       <div id="di" class="jumbotron" align=center>
+       <div id="di" class="jumbotron" align=center style="background-image: url(../../static/images/background.jpg); ">
 		<h2>Chapter 1</h2>
 		<h3>Welcome</h3>
 		<br>
 		<br>
-				<h5 id="subtitles">
-				"Hey: this should come as surprise as this should not be visible at all.!!!!"
-				
+				<h5 id="subtitles" style="background: rgba(0, 0, 0, 0.1); ">
+				This text should only appear to fill out space before the text that would be read out aloud. This is also just padding to test out 
+				the auto scroll feature in digital story.
 				</h5>
-	<br>
-		<br>
-		<br>
-		<br>
 	
 			<audio id="audiofile" preload="auto" controls ><source src="https://dl.dropbox.com/s/gpw39ow8dz1z4hq/speech.mp3" controls ></audio><br>
-	<br>
-		<br>
-		<br>
-		<br>
 				
-			<a  class="refer" HREF="/game" onClick="return popup(this, 'notes')"><img width=150px height=50px src="http://thinkrecycle.com.au/wp-content/uploads/2014/02/APP-Game-Click-Here.gif"></a>
+			<a  class="refer" HREF="/game" onClick="return popup(this, 'notes')" style="left:40%"><img width=150px height=50px src="http://thinkrecycle.com.au/wp-content/uploads/2014/02/APP-Game-Click-Here.gif"></a>
 	</div>
 	 <div id="di" class="jumbotron" align=center><h2>Chapter 2</h2>
 
@@ -204,13 +196,9 @@ p.line {
 				<h5 id="subtitles1">
 	
 				</h5>
-		<br>
-		<br>
-		<br>
-		<br>
+		
 	
 			<audio id="audiofile1" preload="auto" controls ><source src="https://dl.dropbox.com/s/kfv8oszno6cyygx/arabic1.mp3" controls ></audio><br>
-	<br>     
 <button type="button" class="btn btn-info" onclick="callme()" >Toggle vowel</button>	
 	</div>
 </div>
@@ -339,6 +327,8 @@ $(document).ready(function(){
 				  var div = document.getElementById("c_"+index);
 var rect = div.getBoundingClientRect();
 	if(rect.top - topval > 30)
+document.getElementById('subtitles').scrollTop = rect.top;
+if(rect.top - topval == 0)
 document.getElementById('subtitles').scrollTop = rect.top;
 				  }
 		else{
