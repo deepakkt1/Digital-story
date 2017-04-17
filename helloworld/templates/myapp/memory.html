@@ -68,7 +68,7 @@
 <script>
 $(document).ready(function() {
   var app = {
-    cards: [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6],
+    cards: [1, 11, 2, 22, 3, 33, 4, 44, 5, 55, 6, 66],
     init: function() {
       app.shuffle();
     },
@@ -94,13 +94,16 @@ $(document).ready(function() {
     },
     clickHandlers: function() {
       $('.card').on('click', function() {
+	if($(this).data('cardValue') > 10)
+        $(this).css("background-image", "url(static/images/monsters-0"+$(this).data('cardValue') +".png").addClass('selected');
+	else
         $(this).css("background-image", "url(static/images/monsters-0"+$(this).data('cardValue') +".png").addClass('selected');
         app.checkMatch();
       });
     },
     checkMatch: function() {
       if ($('.selected').length === 2) {
-        if ($('.selected').first().data('cardValue') == $('.selected').last().data('cardValue')) {
+        if (($('.selected').first().data('cardValue') % 10 )== ($('.selected').last().data('cardValue') % 10)) {
           $('.selected').each(function() {
             $(this).animate({
               opacity: 0
